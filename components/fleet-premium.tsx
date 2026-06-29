@@ -79,7 +79,7 @@ export function FleetPremium() {
   }, []);
 
   return (
-    <section className="section-pad-xl bg-gradient-to-b from-background to-background-secondary relative overflow-hidden">
+    <section id="fleet" className="section-pad-xl bg-gradient-to-b from-background to-background-secondary relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
