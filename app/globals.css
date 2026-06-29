@@ -25,7 +25,7 @@
   --primary: #b08315;
   --primary-dark: #8c6710;
   --primary-light: #d4af37;
-  --primary-foreground: #15233b;
+  --primary-foreground: #fffdf7;
 
   /* Navy accent (secondary brand color) */
   --accent: #1e3a5f;
@@ -332,6 +332,45 @@
 @keyframes twinkle {
   0%, 100% { opacity: 0.3; transform: scale(0.85); }
   50% { opacity: 1; transform: scale(1); }
+}
+
+/* Carousel text reveal: rises from below with a soft fade */
+@keyframes riseUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-rise {
+  animation: riseUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Stagger helpers for sequential reveal */
+.rise-delay-1 { animation-delay: 0.08s; }
+.rise-delay-2 { animation-delay: 0.18s; }
+.rise-delay-3 { animation-delay: 0.3s; }
+.rise-delay-4 { animation-delay: 0.42s; }
+
+/* Skeleton shimmer for loading slides */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--background-tertiary) 0%,
+    var(--muted) 50%,
+    var(--background-tertiary) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+/* Carousel progress bar fill */
+@keyframes progressFill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 
 .animate-fade-in {
