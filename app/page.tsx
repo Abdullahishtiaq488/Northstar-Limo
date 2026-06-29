@@ -10,7 +10,7 @@ export default function Page() {
   return (
     <>
       <HeaderProfessional />
-      <main className="pt-20">
+      <main>
         <HeroPremium />
         <ServicesPremium />
         <FleetPremium />

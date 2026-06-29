@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Mail, MapPin, Phone, Share2, ArrowRight } from 'lucide-react';
+import { Mail, MapPin, Phone, ArrowRight, Star, Share2 } from 'lucide-react';
 
 export function FooterProfessional() {
   const currentYear = new Date().getFullYear();
@@ -13,7 +13,7 @@ export function FooterProfessional() {
     },
     {
       title: 'Services',
-      links: ['Airport Transfer', 'Corporate Travel', 'Events & Weddings', 'Private Tours', 'Premium Concierge'],
+      links: ['Airport Transfer', 'Corporate Travel', 'Events & Weddings', 'Private Tours', 'Concierge'],
     },
     {
       title: 'Support',
@@ -22,40 +22,41 @@ export function FooterProfessional() {
   ];
 
   const contactInfo = [
-    { icon: Phone, label: '+1 (555) 123-4567', href: 'tel:+15551234567' },
-    { icon: Mail, label: 'hello@northstarlimo.com', href: 'mailto:hello@northstarlimo.com' },
-    { icon: MapPin, label: '123 Luxury Ave, Hartford, CT 06101', href: '#' },
+    { icon: Phone, label: '(475) 341-8410', href: 'tel:+14753418410' },
+    { icon: Mail, label: 'mynorthstarlimo@gmail.com', href: 'mailto:mynorthstarlimo@gmail.com' },
+    { icon: MapPin, label: '245 Colonial Ave, Unit 1A, Waterbury, CT 06704', href: '#' },
   ];
 
   const socialLinks = [
     { icon: Share2, href: '#', label: 'Facebook' },
-    { icon: Share2, href: '#', label: 'Twitter' },
+    { icon: Share2, href: '#', label: 'Instagram' },
     { icon: Share2, href: '#', label: 'LinkedIn' },
   ];
 
   return (
-    <footer className="bg-black/95 dark:bg-black/95 border-t border-yellow-600/30 dark:border-yellow-600/30">
-      {/* Newsletter Section */}
-      <div className="bg-gradient-to-r from-black to-black/80 dark:from-black dark:to-black/80 border-b border-yellow-600/30">
+    <footer className="bg-background-secondary border-t border-border">
+      {/* Newsletter */}
+      <div className="border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 p-8 md:p-10">
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              <h3 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-2">
                 Exclusive Offers
               </h3>
-              <p className="text-gray-400 max-w-md">
-                Subscribe to get exclusive discounts, travel tips, and special offers delivered to your inbox.
+              <p className="text-foreground-secondary max-w-md">
+                Subscribe for exclusive discounts, travel tips, and special offers delivered to your inbox.
               </p>
             </div>
             <form className="w-full md:w-auto flex gap-2">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 md:flex-initial px-4 py-3 rounded-lg bg-white/10 border border-yellow-600/30 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                aria-label="Email address"
+                className="flex-1 md:w-64 px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder-foreground-tertiary focus:outline-none focus:ring-2 focus:ring-primary"
               />
               <button
                 type="submit"
-                className="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-lg transition-all duration-300 flex items-center gap-2 whitespace-nowrap"
+                className="px-6 py-3 bg-primary hover:bg-primary-dark text-primary-foreground font-semibold rounded-lg transition-all duration-300 flex items-center gap-2 whitespace-nowrap"
               >
                 Subscribe
                 <ArrowRight className="w-4 h-4" />
@@ -65,49 +66,50 @@ export function FooterProfessional() {
         </div>
       </div>
 
-      {/* Main Footer Content */}
+      {/* Main */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 md:gap-8 mb-16">
-          {/* Brand Column */}
+          {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-600 to-yellow-700 flex items-center justify-center shadow-md">
-                <span className="text-black font-bold text-lg">⭐</span>
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary-light to-primary flex items-center justify-center shadow-md ring-1 ring-primary/30">
+                <Star className="w-6 h-6 text-primary-foreground fill-primary-foreground" />
               </div>
-              <div>
-                <p className="font-bold text-white">North Star</p>
-                <p className="text-xs font-semibold text-yellow-400">LIMO</p>
+              <div className="leading-none">
+                <p className="font-serif font-bold text-foreground">North Star</p>
+                <p className="text-[0.7rem] font-semibold text-primary tracking-[0.25em]">LIMO</p>
               </div>
             </div>
-            <p className="text-sm text-gray-400 leading-relaxed mb-6">
-              Premium luxury ground transportation for the most discerning clientele worldwide.
+            <p className="text-sm text-foreground-secondary leading-relaxed mb-6">
+              Premium luxury ground transportation for the most discerning clientele across Connecticut and New York.
             </p>
             <div className="flex gap-3">
-              {socialLinks.map((social) => (
-                <Link
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-gray-300 hover:bg-yellow-500 hover:text-black transition-all duration-300"
-                >
-                  <social.icon className="w-5 h-5" />
-                </Link>
-              ))}
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <Link
+                    key={social.label}
+                    href={social.href}
+                    aria-label={social.label}
+                    className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-foreground-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  >
+                    <Icon className="w-5 h-5" />
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
-          {/* Footer Sections */}
+          {/* Link sections */}
           {footerSections.map((section) => (
             <div key={section.title}>
-              <h4 className="font-bold text-white mb-6 text-lg">
-                {section.title}
-              </h4>
+              <h4 className="font-bold text-foreground mb-6 text-lg">{section.title}</h4>
               <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link}>
                     <Link
                       href="#"
-                      className="text-gray-400 hover:text-yellow-400 transition-colors duration-300 text-sm font-medium"
+                      className="text-foreground-secondary hover:text-primary transition-colors duration-300 text-sm font-medium"
                     >
                       {link}
                     </Link>
@@ -117,42 +119,35 @@ export function FooterProfessional() {
             </div>
           ))}
 
-          {/* Contact Column */}
+          {/* Contact */}
           <div>
-            <h4 className="font-bold text-white mb-6 text-lg">
-              Get in Touch
-            </h4>
+            <h4 className="font-bold text-foreground mb-6 text-lg">Get in Touch</h4>
             <div className="space-y-4">
-              {contactInfo.map((info) => (
-                <Link
-                  key={info.label}
-                  href={info.href}
-                  className="flex items-start gap-3 text-sm text-gray-400 hover:text-yellow-400 transition-colors duration-300 group"
-                >
-                  <info.icon className="w-5 h-5 mt-0.5 flex-shrink-0 group-hover:translate-x-1 transition-transform duration-300" />
-                  <span className="leading-relaxed">{info.label}</span>
-                </Link>
-              ))}
+              {contactInfo.map((info) => {
+                const Icon = info.icon;
+                return (
+                  <Link
+                    key={info.label}
+                    href={info.href}
+                    className="flex items-start gap-3 text-sm text-foreground-secondary hover:text-primary transition-colors duration-300 group"
+                  >
+                    <Icon className="w-5 h-5 mt-0.5 flex-shrink-0 text-primary" />
+                    <span className="leading-relaxed">{info.label}</span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-yellow-600/30 pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400">
-            <p>
-              © {currentYear} North Star Limo. All rights reserved. Built with excellence.
-            </p>
+        {/* Bottom bar */}
+        <div className="border-t border-border pt-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-foreground-tertiary">
+            <p>© {currentYear} North Star Limo. All rights reserved.</p>
             <div className="flex gap-6">
-              <Link href="#" className="hover:text-yellow-400 transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="#" className="hover:text-yellow-400 transition-colors">
-                Terms of Service
-              </Link>
-              <Link href="#" className="hover:text-yellow-400 transition-colors">
-                Cookie Settings
-              </Link>
+              <Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link>
+              <Link href="#" className="hover:text-primary transition-colors">Terms of Service</Link>
+              <Link href="#" className="hover:text-primary transition-colors">Cookies</Link>
             </div>
           </div>
         </div>

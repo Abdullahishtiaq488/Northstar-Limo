@@ -26,7 +26,7 @@ export function BookingSectionPremium() {
   };
 
   return (
-    <section className="section-pad-xl bg-gradient-to-b from-background-secondary to-background relative overflow-hidden">
+    <section id="book" className="section-pad-xl bg-gradient-to-b from-background-secondary to-background relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
