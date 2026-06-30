@@ -25,11 +25,32 @@ export function FleetModal({ vehicle, isOpen, onClose }: FleetModalProps) {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      const header = document.querySelector('header');
+      if (header) {
+        header.style.zIndex = '30';
+        header.style.pointerEvents = 'none';
+        header.style.opacity = '0.5';
+      }
     } else {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
+      const header = document.querySelector('header');
+      if (header) {
+        header.style.zIndex = '';
+        header.style.pointerEvents = '';
+        header.style.opacity = '';
+      }
     }
     return () => {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
+      const header = document.querySelector('header');
+      if (header) {
+        header.style.zIndex = '';
+        header.style.pointerEvents = '';
+        header.style.opacity = '';
+      }
     };
   }, [isOpen]);
 

@@ -187,8 +187,8 @@ export default function AboutPage() {
                     <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-accent/10 mx-auto mb-4 flex items-center justify-center">
                       <Users className="w-8 h-8 text-primary" />
                     </div>
-                    <h3 className="font-bold text-foreground mb-1">{member.name}</h3>
-                    <p className="text-sm text-primary font-semibold mb-3">{member.role}</p>
+                    <h3 className="font-semibold text-sm text-foreground mb-1">{member.name}</h3>
+                    <p className="text-xs text-primary font-semibold mb-3">{member.role}</p>
                     <p className="text-sm text-foreground-secondary leading-relaxed">{member.bio}</p>
                   </div>
                 </div>

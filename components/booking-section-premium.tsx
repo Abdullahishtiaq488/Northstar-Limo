@@ -8,8 +8,8 @@ export function BookingSectionPremium() {
     pickupLocation: '',
     dropoffLocation: '',
     date: '',
-    time: '',
     passengers: '1',
+    luggage: '0',
     name: '',
     phone: '',
     email: '',
@@ -106,7 +106,7 @@ export function BookingSectionPremium() {
                 </div>
               </div>
 
-              {/* Date and Time */}
+              {/* Date and Luggage */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold mb-2">Date *</label>
@@ -123,18 +123,17 @@ export function BookingSectionPremium() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-2">Time *</label>
-                  <div className="relative">
-                    <Clock className="absolute left-4 top-3.5 w-5 h-5 text-primary pointer-events-none" />
-                    <input
-                      type="time"
-                      name="time"
-                      value={formData.time}
-                      onChange={handleInputChange}
-                      className="w-full pl-12 pr-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-                      required
-                    />
-                  </div>
+                  <label className="block text-sm font-semibold mb-2">Luggage *</label>
+                  <input
+                    type="number"
+                    name="luggage"
+                    value={formData.luggage}
+                    onChange={handleInputChange}
+                    placeholder="Number of luggage"
+                    min="0"
+                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                    required
+                  />
                 </div>
               </div>
 

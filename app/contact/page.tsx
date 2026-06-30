@@ -190,52 +190,6 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
-
-        {/* FAQ Section */}
-        <section className="section-pad-xl bg-background relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-12">
-              <div className="flex items-center justify-center mb-6">
-                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-                  <div className="w-2 h-2 rounded-full bg-primary" />
-                  <span className="text-sm font-semibold text-primary tracking-wider uppercase">
-                    FAQ
-                  </span>
-                  <div className="w-2 h-2 rounded-full bg-primary" />
-                </div>
-              </div>
-              <h2 className="heading-luxury">Common Questions</h2>
-            </div>
-
-            <div className="space-y-4">
-              {[
-                {
-                  q: 'How do I book a ride?',
-                  a: 'You can book through our website, mobile app, or by calling us at (475) 341-8410. Bookings are confirmed instantly.',
-                },
-                {
-                  q: 'What is your cancellation policy?',
-                  a: 'We offer flexible cancellation up to 2 hours before your scheduled pickup time with full refund.',
-                },
-                {
-                  q: 'Are your drivers professional?',
-                  a: 'Yes, all our drivers are background-checked, professionally trained, and thoroughly vetted for your safety.',
-                },
-                {
-                  q: 'What areas do you serve?',
-                  a: 'We provide premium transportation throughout Connecticut and New York with 24/7 availability.',
-                },
-              ].map((faq, idx) => (
-                <div key={idx} className="bg-background-secondary border border-border rounded-xl p-6 hover:border-primary/30 transition-all">
-                  <h3 className="font-bold text-foreground mb-2">{faq.q}</h3>
-                  <p className="text-foreground-secondary">{faq.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
       </main>
       <FooterProfessional />
     </>
