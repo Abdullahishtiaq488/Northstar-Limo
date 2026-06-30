@@ -29,9 +29,9 @@ export function FooterProfessional() {
       title: 'Support',
       links: [
         { label: 'Contact Us', href: '/contact' },
-        { label: 'FAQ', href: '#' },
-        { label: 'Privacy Policy', href: '#' },
-        { label: 'Terms of Service', href: '#' },
+        { label: 'FAQ', href: '/faq' },
+        { label: 'Privacy Policy', href: '/privacy' },
+        { label: 'Terms of Service', href: '/terms' },
       ],
     },
   ];

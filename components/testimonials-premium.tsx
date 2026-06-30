@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Star } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
@@ -10,6 +11,7 @@ const testimonials = [
     content: 'North Star Limo has been our preferred transportation partner for executive events. Their professionalism and attention to detail are unmatched.',
     rating: 5,
     initials: 'JM',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
   },
   {
     name: 'Sarah Anderson',
@@ -17,6 +19,7 @@ const testimonials = [
     content: 'We\'ve used North Star Limo for over 100 weddings. Every bride and groom has been thrilled with their service. Simply the best in the industry.',
     rating: 5,
     initials: 'SA',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
   },
   {
     name: 'David Chen',
@@ -24,6 +27,7 @@ const testimonials = [
     content: 'Our guests consistently praise their limousine service. The drivers are courteous, the vehicles are pristine, and the experience is luxurious.',
     rating: 5,
     initials: 'DC',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop',
   },
   {
     name: 'Michelle Rodriguez',
@@ -31,6 +35,7 @@ const testimonials = [
     content: 'Reliability, elegance, and professionalism define North Star Limo. They make every event special from the moment guests arrive.',
     rating: 5,
     initials: 'MR',
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop',
   },
 ];
 
@@ -117,11 +122,16 @@ export function TestimonialsPremium() {
 
                 {/* Author */}
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-foreground font-bold">
-                    {testimonial.initials}
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-primary/20">
+                    <Image
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   <div>
-                    <p className="font-bold">{testimonial.name}</p>
+                    <p className="font-bold text-sm">{testimonial.name}</p>
                     <p className="body-text-light text-xs">{testimonial.title}</p>
                   </div>
                 </div>

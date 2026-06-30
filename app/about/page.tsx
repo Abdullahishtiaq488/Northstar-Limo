@@ -110,9 +110,9 @@ export default function AboutPage() {
                 <div key={idx} className="group relative">
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/10 to-accent/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="relative bg-background-secondary border border-border rounded-xl p-6 hover:border-primary/30 transition-all duration-300">
-                    <div className="text-3xl font-serif font-bold text-primary mb-2">{milestone.year}</div>
-                    <h3 className="font-bold text-foreground mb-2">{milestone.title}</h3>
-                    <p className="text-sm text-foreground-secondary leading-relaxed">{milestone.description}</p>
+                    <div className="text-2xl font-serif font-bold text-primary mb-2">{milestone.year}</div>
+                    <h3 className="font-semibold text-sm text-foreground mb-2">{milestone.title}</h3>
+                    <p className="text-xs text-foreground-secondary leading-relaxed">{milestone.description}</p>
                   </div>
                 </div>
               ))}

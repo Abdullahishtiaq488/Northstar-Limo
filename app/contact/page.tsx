@@ -86,9 +86,9 @@ export default function ContactPage() {
                       <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/10 mb-4">
                         <Icon className="w-6 h-6 text-primary" />
                       </div>
-                      <h3 className="font-bold text-foreground mb-1">{info.title}</h3>
-                      <p className="text-sm font-semibold text-primary mb-2">{info.details}</p>
-                      <p className="text-sm text-foreground-secondary">{info.description}</p>
+                      <h3 className="font-semibold text-sm text-foreground mb-1">{info.title}</h3>
+                      <p className="text-xs font-semibold text-primary mb-2">{info.details}</p>
+                      <p className="text-xs text-foreground-secondary">{info.description}</p>
                     </div>
                   </div>
                 );
