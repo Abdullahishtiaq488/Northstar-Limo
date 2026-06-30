@@ -108,7 +108,7 @@ export function HeroPremium() {
     <section className="relative w-full min-h-screen overflow-hidden flex items-center">
       {/* Skeleton — visible until the active slide image has loaded */}
       {!isActiveLoaded && (
-        <div className="absolute inset-0 z-[2] skeleton-shimmer" aria-hidden="true">
+        <div className="absolute inset-0 z-20 skeleton-shimmer" aria-hidden="true">
           <div className="container-max w-full h-full flex items-center">
             <div className="max-w-2xl pt-28 pb-16 w-full space-y-6">
               <div className="h-9 w-64 rounded-full bg-foreground/10" />
@@ -125,7 +125,7 @@ export function HeroPremium() {
       )}
 
       {/* Slides */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0" style={{ minHeight: '100vh' }}>
         {slides.map((slide, i) => (
           <div
             key={slide.image}
@@ -161,7 +161,7 @@ export function HeroPremium() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container-max w-full pt-28 pb-20">
+      <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-20">
         {/* key forces re-mount per slide so the rise animation replays */}
         <div key={current} className="max-w-2xl">
           {/* Eyebrow badge */}
@@ -229,7 +229,7 @@ export function HeroPremium() {
       </div>
 
       {/* Carousel controls */}
-      <div className="absolute right-4 sm:right-8 top-24 z-20">
+      <div className="absolute right-4 sm:right-8 top-24 z-30">
         <button
           type="button"
           onClick={() => setIsPlaying((p) => !p)}
@@ -241,7 +241,7 @@ export function HeroPremium() {
       </div>
 
       {/* Prev / Next + indicators */}
-      <div className="absolute bottom-6 right-4 sm:right-8 z-20 flex items-center gap-3">
+      <div className="absolute bottom-6 right-4 sm:right-8 z-30 flex items-center gap-3">
         <div className="flex items-center gap-2 mr-1">
           {slides.map((slide, i) => (
             <button

@@ -33,7 +33,7 @@ export function BookingSectionPremium() {
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
       </div>
 
-      <div className="container-max relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Section */}
           <div>
