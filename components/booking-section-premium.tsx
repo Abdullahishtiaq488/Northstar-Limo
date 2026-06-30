@@ -1,28 +1,69 @@
 'use client';
 
 import { Calendar, Clock, MapPin, Users } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 
 export function BookingSectionPremium() {
+  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
-    pickupLocation: '',
-    dropoffLocation: '',
+    fromAddress: '',
+    toAddress: '',
     date: '',
-    time: '',
     passengers: '1',
+    luggage: '0',
     name: '',
     phone: '',
     email: '',
   });
+  const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    emailjs.init('PZtf-SW7lqTRrSJ1-');
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Booking submitted:', formData);
+    setIsLoading(true);
+
+    try {
+      await emailjs.send('service_j058m67', 'template_g2ln0g2', {
+        fromAddress: formData.fromAddress,
+        toAddress: formData.toAddress,
+        date: formData.date,
+        passengers: formData.passengers,
+        luggage: formData.luggage,
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+      });
+
+      setSubmitted(true);
+      setFormData({
+        fromAddress: '',
+        toAddress: '',
+        date: '',
+        passengers: '1',
+        luggage: '0',
+        name: '',
+        phone: '',
+        email: '',
+      });
+
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+    } catch (error) {
+      console.error('Failed to send email:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -33,7 +74,7 @@ export function BookingSectionPremium() {
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
       </div>
 
-      <div className="container-max relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Section */}
           <div>
@@ -74,15 +115,15 @@ export function BookingSectionPremium() {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Pickup Location */}
               <div>
-                <label className="block text-sm font-semibold mb-2">Pickup Location *</label>
+                <label className="block text-sm font-semibold mb-2">From (Pickup Location) *</label>
                 <div className="relative">
                   <MapPin className="absolute left-4 top-3.5 w-5 h-5 text-primary pointer-events-none" />
                   <input
                     type="text"
-                    name="pickupLocation"
-                    value={formData.pickupLocation}
+                    name="fromAddress"
+                    value={formData.fromAddress}
                     onChange={handleInputChange}
-                    placeholder="Enter pickup address"
+                    placeholder="Address, airport, hotel, ..."
                     className="w-full pl-12 pr-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                     required
                   />
@@ -91,22 +132,22 @@ export function BookingSectionPremium() {
 
               {/* Dropoff Location */}
               <div>
-                <label className="block text-sm font-semibold mb-2">Dropoff Location *</label>
+                <label className="block text-sm font-semibold mb-2">To (Dropoff Location) *</label>
                 <div className="relative">
                   <MapPin className="absolute left-4 top-3.5 w-5 h-5 text-primary pointer-events-none" />
                   <input
                     type="text"
-                    name="dropoffLocation"
-                    value={formData.dropoffLocation}
+                    name="toAddress"
+                    value={formData.toAddress}
                     onChange={handleInputChange}
-                    placeholder="Enter destination address"
+                    placeholder="Address, airport, hotel, ..."
                     className="w-full pl-12 pr-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                     required
                   />
                 </div>
               </div>
 
-              {/* Date and Time */}
+              {/* Date and Luggage */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold mb-2">Date *</label>
@@ -123,18 +164,17 @@ export function BookingSectionPremium() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-2">Time *</label>
-                  <div className="relative">
-                    <Clock className="absolute left-4 top-3.5 w-5 h-5 text-primary pointer-events-none" />
-                    <input
-                      type="time"
-                      name="time"
-                      value={formData.time}
-                      onChange={handleInputChange}
-                      className="w-full pl-12 pr-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-                      required
-                    />
-                  </div>
+                  <label className="block text-sm font-semibold mb-2">Luggage *</label>
+                  <input
+                    type="number"
+                    name="luggage"
+                    value={formData.luggage}
+                    onChange={handleInputChange}
+                    placeholder="Number of luggage"
+                    min="0"
+                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                    required
+                  />
                 </div>
               </div>
 
@@ -191,9 +231,22 @@ export function BookingSectionPremium() {
                 required
               />
 
+              {/* Success Message */}
+              {submitted && (
+                <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-4">
+                  <p className="text-green-500 font-semibold text-center">
+                    Thank you! We will get back to you with a price quotation shortly.
+                  </p>
+                </div>
+              )}
+
               {/* Submit Button */}
-              <button type="submit" className="btn-primary w-full">
-                Request Booking
+              <button 
+                type="submit" 
+                disabled={isLoading}
+                className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isLoading ? 'Sending...' : 'Request Booking'}
               </button>
 
               <p className="text-center text-xs text-muted-dark">

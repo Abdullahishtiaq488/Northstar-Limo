@@ -71,7 +71,6 @@ const SLIDE_DURATION = 6000;
 export function HeroPremium() {
   const [current, setCurrent] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [loaded, setLoaded] = useState<boolean[]>(() => slides.map(() => false));
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const goTo = useCallback((index: number) => {
@@ -92,40 +91,12 @@ export function HeroPremium() {
     };
   }, [isPlaying, current]);
 
-  const handleLoad = (index: number) => {
-    setLoaded((prevLoaded) => {
-      if (prevLoaded[index]) return prevLoaded;
-      const copy = [...prevLoaded];
-      copy[index] = true;
-      return copy;
-    });
-  };
-
   const active = slides[current];
-  const isActiveLoaded = loaded[current];
 
   return (
     <section className="relative w-full min-h-screen overflow-hidden flex items-center">
-      {/* Skeleton — visible until the active slide image has loaded */}
-      {!isActiveLoaded && (
-        <div className="absolute inset-0 z-[2] skeleton-shimmer" aria-hidden="true">
-          <div className="container-max w-full h-full flex items-center">
-            <div className="max-w-2xl pt-28 pb-16 w-full space-y-6">
-              <div className="h-9 w-64 rounded-full bg-foreground/10" />
-              <div className="h-14 w-3/4 rounded-lg bg-foreground/10" />
-              <div className="h-14 w-2/3 rounded-lg bg-foreground/10" />
-              <div className="h-20 w-full max-w-xl rounded-lg bg-foreground/10" />
-              <div className="flex gap-4 pt-2">
-                <div className="h-14 w-48 rounded-lg bg-foreground/10" />
-                <div className="h-14 w-44 rounded-lg bg-foreground/10" />
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Slides */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0" style={{ minHeight: '100vh' }}>
         {slides.map((slide, i) => (
           <div
             key={slide.image}
@@ -143,8 +114,6 @@ export function HeroPremium() {
               className={`object-cover transition-transform duration-[8000ms] ease-out ${
                 i === current ? 'scale-105' : 'scale-100'
               }`}
-              onLoad={() => handleLoad(i)}
-              onError={() => handleLoad(i)}
             />
           </div>
         ))}
@@ -161,7 +130,7 @@ export function HeroPremium() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container-max w-full pt-28 pb-20">
+      <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-20">
         {/* key forces re-mount per slide so the rise animation replays */}
         <div key={current} className="max-w-2xl">
           {/* Eyebrow badge */}
@@ -229,7 +198,7 @@ export function HeroPremium() {
       </div>
 
       {/* Carousel controls */}
-      <div className="absolute right-4 sm:right-8 top-24 z-20">
+      <div className="absolute right-4 sm:right-8 top-24 z-30">
         <button
           type="button"
           onClick={() => setIsPlaying((p) => !p)}
@@ -241,7 +210,7 @@ export function HeroPremium() {
       </div>
 
       {/* Prev / Next + indicators */}
-      <div className="absolute bottom-6 right-4 sm:right-8 z-20 flex items-center gap-3">
+      <div className="absolute bottom-6 right-4 sm:right-8 z-30 flex items-center gap-3">
         <div className="flex items-center gap-2 mr-1">
           {slides.map((slide, i) => (
             <button

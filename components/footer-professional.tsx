@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Mail, MapPin, Phone, ArrowRight, Star, Share2 } from 'lucide-react';
+import { Mail, MapPin, Phone, ArrowRight, Star, Send, Share2, Heart } from 'lucide-react';
 
 export function FooterProfessional() {
   const currentYear = new Date().getFullYear();
@@ -9,15 +9,30 @@ export function FooterProfessional() {
   const footerSections = [
     {
       title: 'Company',
-      links: ['About Us', 'Our Fleet', 'Leadership', 'Careers', 'Press'],
+      links: [
+        { label: 'About Us', href: '/about' },
+        { label: 'Our Fleet', href: '/fleet' },
+        { label: 'Services', href: '/services' },
+        { label: 'Careers', href: '#' },
+      ],
     },
     {
       title: 'Services',
-      links: ['Airport Transfer', 'Corporate Travel', 'Events & Weddings', 'Private Tours', 'Concierge'],
+      links: [
+        { label: 'Airport Transfer', href: '/services' },
+        { label: 'Corporate Travel', href: '/services' },
+        { label: 'Events & Weddings', href: '/services' },
+        { label: 'Special Occasions', href: '/services' },
+      ],
     },
     {
       title: 'Support',
-      links: ['Booking Help', 'FAQ', 'Contact Us', 'Privacy Policy', 'Terms of Service'],
+      links: [
+        { label: 'Contact Us', href: '/contact' },
+        { label: 'FAQ', href: '/faq' },
+        { label: 'Privacy Policy', href: '/privacy' },
+        { label: 'Terms of Service', href: '/terms' },
+      ],
     },
   ];
 
@@ -28,9 +43,9 @@ export function FooterProfessional() {
   ];
 
   const socialLinks = [
-    { icon: Share2, href: '#', label: 'Facebook' },
+    { icon: Send, href: '#', label: 'Facebook' },
     { icon: Share2, href: '#', label: 'Instagram' },
-    { icon: Share2, href: '#', label: 'LinkedIn' },
+    { icon: Heart, href: '#', label: 'Community' },
   ];
 
   return (
@@ -106,12 +121,12 @@ export function FooterProfessional() {
               <h4 className="font-bold text-foreground mb-6 text-lg">{section.title}</h4>
               <ul className="space-y-3">
                 {section.links.map((link) => (
-                  <li key={link}>
+                  <li key={link.label}>
                     <Link
-                      href="#"
+                      href={link.href}
                       className="text-foreground-secondary hover:text-primary transition-colors duration-300 text-sm font-medium"
                     >
-                      {link}
+                      {link.label}
                     </Link>
                   </li>
                 ))}
@@ -142,11 +157,29 @@ export function FooterProfessional() {
 
         {/* Bottom bar */}
         <div className="border-t border-border pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-foreground-tertiary">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-sm text-foreground-tertiary">
             <p>© {currentYear} North Star Limo. All rights reserved.</p>
+            
+            {/* Social Links */}
+            <div className="flex gap-4">
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    aria-label={social.label}
+                    className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  >
+                    <Icon className="w-5 h-5 text-primary hover:text-primary" />
+                  </a>
+                );
+              })}
+            </div>
+
             <div className="flex gap-6">
-              <Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link>
-              <Link href="#" className="hover:text-primary transition-colors">Terms of Service</Link>
+              <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
               <Link href="#" className="hover:text-primary transition-colors">Cookies</Link>
             </div>
           </div>

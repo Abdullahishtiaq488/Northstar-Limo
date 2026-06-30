@@ -33,10 +33,11 @@ export function HeaderProfessional() {
   };
 
   const navItems = [
-    { label: 'Services', href: '#services' },
-    { label: 'Fleet', href: '#fleet' },
-    { label: 'Book', href: '#book' },
-    { label: 'Testimonials', href: '#testimonials' },
+    { label: 'Home', href: '/' },
+    { label: 'About', href: '/about' },
+    { label: 'Services', href: '/services' },
+    { label: 'Fleet', href: '/fleet' },
+    { label: 'Contact', href: '/contact' },
   ];
 
   if (!mounted) return null;
@@ -95,7 +96,7 @@ export function HeaderProfessional() {
             </a>
 
             <Link
-              href="#book"
+              href="/contact"
               className="hidden sm:inline-flex items-center px-5 py-2.5 bg-primary hover:bg-primary-dark text-primary-foreground text-sm font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
             >
               Book Now
