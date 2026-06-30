@@ -1,16 +1,16 @@
 'use client';
 
-import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
 import { useState } from 'react';
-import Link from 'next/link';
 import { HeaderProfessional } from '@/components/header-professional';
 import { FooterProfessional } from '@/components/footer-professional';
+import { PageHeader } from '@/components/page-header';
 
 const contactInfo = [
   {
     icon: Phone,
     title: 'Phone',
-    details: '(203) 555-0123',
+    details: '(475) 341-8410',
     description: 'Available 24/7 for booking and inquiries',
   },
   {
@@ -55,267 +55,189 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you would send this data to a backend or email service
-    console.log('Form submitted:', formData);
     setSubmitted(true);
-    setTimeout(() => {
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        serviceType: 'general',
-        date: '',
-        message: '',
-      });
-      setSubmitted(false);
-    }, 3000);
+    setTimeout(() => setSubmitted(false), 5000);
+    setFormData({ name: '', email: '', phone: '', serviceType: 'general', date: '', message: '' });
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
       <HeaderProfessional />
+      <main className="bg-background">
+        <PageHeader
+          subtitle="Get in Touch"
+          title="Let's Plan Your Journey"
+          description="Have questions or ready to book your next ride? Our team is here to help. Contact us today and experience premium transportation."
+        />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-background relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+        {/* Contact Info Cards */}
+        <section className="section-pad-xl bg-background relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <span className="text-primary text-sm font-semibold tracking-widest uppercase">Get In Touch</span>
-            <h1 className="heading-luxury mt-2 mb-6">
-              Ready to Book Your<br />
-              <span className="text-primary">Luxury Transportation?</span>
-            </h1>
-            <p className="body-text text-lg max-w-2xl">
-              Contact our team today and let us help you plan the perfect journey. We&apos;re here 24/7 to assist you.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Info Cards */}
-      <section className="section-pad-xl bg-background-secondary relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {contactInfo.map((info, index) => {
-              const Icon = info.icon;
-              return (
-                <div key={index} className="card p-6">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 mb-4">
-                    <Icon className="w-6 h-6 text-primary" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+              {contactInfo.map((info, idx) => {
+                const Icon = info.icon;
+                return (
+                  <div key={idx} className="group relative">
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/15 to-accent/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur" />
+                    <div className="relative bg-background-secondary border border-border rounded-2xl p-6 hover:border-primary/30 transition-all duration-300">
+                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/10 mb-4">
+                        <Icon className="w-6 h-6 text-primary" />
+                      </div>
+                      <h3 className="font-bold text-foreground mb-1">{info.title}</h3>
+                      <p className="text-sm font-semibold text-primary mb-2">{info.details}</p>
+                      <p className="text-sm text-foreground-secondary">{info.description}</p>
+                    </div>
                   </div>
-                  <h3 className="font-bold text-lg mb-2">{info.title}</h3>
-                  <p className="text-foreground font-semibold text-sm mb-2">{info.details}</p>
-                  <p className="text-xs text-foreground-tertiary">{info.description}</p>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Contact Form & Map Section */}
-      <section className="section-pad-xl bg-background relative overflow-hidden">
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+        {/* Form Section */}
+        <section className="section-pad-xl bg-background-secondary relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-primary/8 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div>
-              <h2 className="heading-luxury mb-8">Send us a Message</h2>
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="bg-background border border-border rounded-3xl p-8 sm:p-12">
+              <h2 className="heading-luxury text-center mb-2">Send us a Message</h2>
+              <p className="text-center text-foreground-secondary mb-10">
+                Tell us about your transportation needs and we'll get back to you promptly.
+              </p>
 
               {submitted ? (
-                <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
-                  <div className="text-4xl mb-4">✓</div>
-                  <h3 className="font-bold text-lg mb-2 text-green-900">Thank you for contacting us!</h3>
-                  <p className="text-green-700">We&apos;ll get back to you shortly with more information.</p>
+                <div className="bg-gradient-to-r from-success/10 to-success/5 border border-success/30 rounded-2xl p-8 text-center">
+                  <CheckCircle className="w-16 h-16 text-success mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-foreground mb-2">Thank You!</h3>
+                  <p className="text-foreground-secondary">
+                    We've received your message and will be in touch within 2 hours.
+                  </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Name */}
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-semibold mb-2">
-                      Full Name
-                    </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <input
                       type="text"
-                      id="name"
                       name="name"
+                      placeholder="Your Name"
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background-secondary text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-                      placeholder="John Doe"
+                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                     />
-                  </div>
-
-                  {/* Email */}
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-semibold mb-2">
-                      Email Address
-                    </label>
                     <input
                       type="email"
-                      id="email"
                       name="email"
+                      placeholder="Your Email"
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background-secondary text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-                      placeholder="john@example.com"
+                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                     />
                   </div>
 
-                  {/* Phone */}
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold mb-2">
-                      Phone Number
-                    </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <input
                       type="tel"
-                      id="phone"
                       name="phone"
+                      placeholder="Phone Number"
                       value={formData.phone}
                       onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background-secondary text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-                      placeholder="(203) 555-0123"
+                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                     />
-                  </div>
-
-                  {/* Service Type */}
-                  <div>
-                    <label htmlFor="serviceType" className="block text-sm font-semibold mb-2">
-                      Service Type
-                    </label>
                     <select
-                      id="serviceType"
                       name="serviceType"
                       value={formData.serviceType}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background-secondary text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                     >
-                      <option value="general">General Inquiry</option>
+                      <option value="general">Select Service Type</option>
                       <option value="airport">Airport Transfer</option>
-                      <option value="wedding">Wedding Service</option>
-                      <option value="corporate">Corporate Event</option>
-                      <option value="special">Special Occasion</option>
+                      <option value="corporate">Corporate Travel</option>
+                      <option value="event">Event Transportation</option>
+                      <option value="wedding">Wedding Services</option>
+                      <option value="other">Other</option>
                     </select>
                   </div>
 
-                  {/* Date */}
-                  <div>
-                    <label htmlFor="date" className="block text-sm font-semibold mb-2">
-                      Preferred Date (Optional)
-                    </label>
-                    <input
-                      type="date"
-                      id="date"
-                      name="date"
-                      value={formData.date}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background-secondary text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-                    />
-                  </div>
+                  <input
+                    type="date"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                  />
 
-                  {/* Message */}
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-semibold mb-2">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background-secondary text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none"
-                      placeholder="Tell us about your transportation needs..."
-                    />
-                  </div>
+                  <textarea
+                    name="message"
+                    placeholder="Tell us about your transportation needs..."
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={5}
+                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all resize-none"
+                  />
 
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    className="btn-primary w-full"
-                  >
+                  <button type="submit" className="btn-primary w-full sm:w-auto">
                     Send Message
                     <Send className="w-5 h-5" />
                   </button>
                 </form>
               )}
             </div>
+          </div>
+        </section>
 
-            {/* Info & Services */}
-            <div>
-              <h2 className="heading-luxury mb-8">Why Choose Us?</h2>
+        {/* FAQ Section */}
+        <section className="section-pad-xl bg-background relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
-              <div className="space-y-6">
-                <div>
-                  <h3 className="font-bold text-lg mb-2">Professional Chauffeurs</h3>
-                  <p className="text-foreground-secondary">
-                    Highly trained, courteous drivers with extensive experience in luxury transportation.
-                  </p>
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-12">
+              <div className="flex items-center justify-center mb-6">
+                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+                  <div className="w-2 h-2 rounded-full bg-primary" />
+                  <span className="text-sm font-semibold text-primary tracking-wider uppercase">
+                    FAQ
+                  </span>
+                  <div className="w-2 h-2 rounded-full bg-primary" />
                 </div>
-
-                <div>
-                  <h3 className="font-bold text-lg mb-2">Premium Fleet</h3>
-                  <p className="text-foreground-secondary">
-                    Meticulously maintained luxury vehicles including limousines, sedans, and SUVs.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-lg mb-2">24/7 Availability</h3>
-                  <p className="text-foreground-secondary">
-                    Round-the-clock service with instant booking and flexible scheduling.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-lg mb-2">Transparent Pricing</h3>
-                  <p className="text-foreground-secondary">
-                    No hidden fees. Get a detailed quote before you book your ride.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-lg mb-2">Fully Insured</h3>
-                  <p className="text-foreground-secondary">
-                    Complete insurance coverage for your peace of mind and protection.
-                  </p>
-                </div>
-
-                <Link href="/services" className="btn-secondary mt-8">
-                  View All Services
-                </Link>
               </div>
+              <h2 className="heading-luxury">Common Questions</h2>
+            </div>
+
+            <div className="space-y-4">
+              {[
+                {
+                  q: 'How do I book a ride?',
+                  a: 'You can book through our website, mobile app, or by calling us at (475) 341-8410. Bookings are confirmed instantly.',
+                },
+                {
+                  q: 'What is your cancellation policy?',
+                  a: 'We offer flexible cancellation up to 2 hours before your scheduled pickup time with full refund.',
+                },
+                {
+                  q: 'Are your drivers professional?',
+                  a: 'Yes, all our drivers are background-checked, professionally trained, and thoroughly vetted for your safety.',
+                },
+                {
+                  q: 'What areas do you serve?',
+                  a: 'We provide premium transportation throughout Connecticut and New York with 24/7 availability.',
+                },
+              ].map((faq, idx) => (
+                <div key={idx} className="bg-background-secondary border border-border rounded-xl p-6 hover:border-primary/30 transition-all">
+                  <h3 className="font-bold text-foreground mb-2">{faq.q}</h3>
+                  <p className="text-foreground-secondary">{faq.a}</p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="section-pad-xl bg-background-secondary relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h2 className="heading-luxury mb-4">Still Have Questions?</h2>
-          <p className="body-text max-w-2xl mx-auto mb-6">
-            Call us directly at <span className="font-semibold">(203) 555-0123</span> or visit us to discuss your needs.
-          </p>
-          <a href="tel:+12035550123" className="btn-primary inline-flex">
-            <Phone className="w-5 h-5" />
-            Call Now
-          </a>
-        </div>
-      </section>
-
+        </section>
+      </main>
       <FooterProfessional />
-    </div>
+    </>
   );
 }

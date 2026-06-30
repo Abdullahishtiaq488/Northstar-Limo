@@ -1,27 +1,28 @@
 'use client';
 
-import { Users, Briefcase, Heart, ArrowRight } from 'lucide-react';
+import { Users, Briefcase, Heart, ArrowRight, Zap, Shield, Clock } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { ServiceCardPremium } from './service-card-premium';
 
 const servicesPreview = [
   {
     icon: Users,
     title: 'Group Events',
-    description: 'Perfect for weddings, corporate retreats, and celebrations. Capacity up to 14 passengers with premium amenities.',
-    color: 'from-blue-500 to-cyan-500',
+    description: 'Perfect for weddings, corporate retreats, and celebrations with premium amenities.',
+    features: ['Up to 14 passengers', 'Custom itineraries', 'Professional drivers'],
   },
   {
     icon: Briefcase,
     title: 'Corporate Travel',
-    description: 'Executive transportation for business meetings, conferences, and VIP clients worldwide.',
-    color: 'from-purple-500 to-pink-500',
+    description: 'Executive transportation for business meetings, conferences, and VIP clients.',
+    features: ['24/7 availability', 'Flexible scheduling', 'Confidentiality assured'],
   },
   {
     icon: Heart,
     title: 'Special Occasions',
-    description: 'Make your special moments unforgettable with our premium event transportation services.',
-    color: 'from-rose-500 to-orange-500',
+    description: 'Make your special moments unforgettable with premium event transportation.',
+    features: ['Wedding transportation', 'Anniversary services', 'Personal touch'],
   },
 ];
 
@@ -63,8 +64,14 @@ export function ServicesLimited() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-20">
-          <div className="inline-block mb-4">
-            <span className="text-primary text-sm font-semibold tracking-widest uppercase">Our Services</span>
+          <div className="flex items-center justify-center mb-6">
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+              <div className="w-2 h-2 rounded-full bg-primary" />
+              <span className="text-sm font-semibold text-primary tracking-wider uppercase">
+                Our Expertise
+              </span>
+              <div className="w-2 h-2 rounded-full bg-primary" />
+            </div>
           </div>
           <h2 className="heading-luxury mb-4">
             Premium Services<br />
@@ -77,40 +84,26 @@ export function ServicesLimited() {
 
         {/* Services Grid - Limited to 3 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {servicesPreview.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <div
-                key={index}
-                ref={(el) => {
-                  itemsRef.current[index] = el;
-                }}
-                className={`group relative transition-all duration-700 ${
-                  visibleItems[index]
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-12'
-                }`}
-              >
-                <div className="card p-8 h-full relative hover:shadow-2xl">
-                  {/* Icon Container */}
-                  <div className={`inline-flex items-center justify-center w-16 h-16 rounded-lg bg-gradient-to-br ${service.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className="w-8 h-8 text-white" />
-                  </div>
-
-                  {/* Content */}
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="body-text-light">
-                    {service.description}
-                  </p>
-
-                  {/* Hover Line */}
-                  <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-primary to-primary-light group-hover:w-full transition-all duration-500" />
-                </div>
-              </div>
-            );
-          })}
+          {servicesPreview.map((service, index) => (
+            <div
+              key={index}
+              ref={(el) => {
+                itemsRef.current[index] = el;
+              }}
+              className={`transition-all duration-700 ${
+                visibleItems[index]
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-12'
+              }`}
+            >
+              <ServiceCardPremium
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+                features={service.features}
+              />
+            </div>
+          ))}
         </div>
 
         {/* View All Button */}

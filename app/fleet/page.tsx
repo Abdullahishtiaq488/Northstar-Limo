@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { HeaderProfessional } from '@/components/header-professional';
 import { FooterProfessional } from '@/components/footer-professional';
 import { FleetModal } from '@/components/fleet-modal';
+import { PageHeader } from '@/components/page-header';
 import { ArrowRight } from 'lucide-react';
 
 const allFleetData = [
@@ -158,23 +159,12 @@ export default function FleetPage() {
     <div className="min-h-screen bg-background">
       <HeaderProfessional />
 
-      {/* Page Header */}
-      <section className="pt-32 pb-16 bg-background relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <span className="text-primary text-sm font-semibold tracking-widest uppercase">Our Fleet</span>
-            <h1 className="heading-luxury mt-2 mb-6">
-              Premium Luxury<br />
-              <span className="text-primary">Vehicle Collection</span>
-            </h1>
-            <p className="body-text text-lg max-w-2xl">
-              Explore our meticulously maintained fleet of luxury vehicles. Click on any vehicle to view detailed specifications and amenities.
-            </p>
-          </div>
-        </div>
-      </section>
+      <main>
+        <PageHeader
+          subtitle="Our Fleet"
+          title="Premium Luxury Vehicle Collection"
+          description="Explore our meticulously maintained fleet of luxury vehicles. Click on any vehicle to view detailed specifications and amenities."
+        />
 
       {/* Fleet Grid */}
       <section className="section-pad-xl bg-background relative overflow-hidden">
@@ -273,12 +263,13 @@ export default function FleetPage() {
         </div>
       </section>
 
-      {/* Fleet Modal */}
-      <FleetModal
-        vehicle={selectedVehicle}
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
+        {/* Fleet Modal */}
+        <FleetModal
+          vehicle={selectedVehicle}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
+      </main>
 
       <FooterProfessional />
     </div>
