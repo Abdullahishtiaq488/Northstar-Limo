@@ -47,8 +47,8 @@ const allFleetData = [
   },
   {
     name: 'Limousine',
-    image: '/vehicles/luxury-sedans.png',
-    capacity: '4 passengers',
+    image: '/vehicles/sprinter-limo.png',
+    capacity: '6-8 passengers',
     features: ['Classic Luxury', 'Elegant Design', 'Premium Interior', 'Climate Control', 'Professional Service'],
     description: 'Timeless luxury and elegance for distinguished occasions.',
     fullDescription: 'Our classic Limousine combines timeless elegance with modern comfort, perfect for formal events and executive travel.',
@@ -140,44 +140,6 @@ const allFleetData = [
     exteriorColor: 'Pearl White',
     interiorColor: 'Premium Interior',
     amenities: ['Wheelchair lift', 'Spacious interior', 'Climate control', 'Professional driver', 'Secure restraints'],
-    interiorColor: 'Jet Black Leather',
-    amenities: ['Rear seat entertainment', 'Premium audio system', 'Heated seats', 'Power sunroof', 'Climate zones'],
-  },
-  {
-    name: 'Porsche Panamera',
-    image: '/vehicles/porsche-panamera.png',
-    capacity: '4 passengers',
-    features: ['Performance', 'Sporty Luxury', 'Advanced Handling', 'Premium Interior', 'Smooth Performance'],
-    description: 'Sports sedan excellence meets ultimate comfort.',
-    fullDescription: 'Experience the perfect blend of high-performance sports car dynamics with luxury sedan comfort in the Porsche Panamera.',
-    yearModel: '2023',
-    exteriorColor: 'Racing Yellow',
-    interiorColor: 'Leather Burgundy',
-    amenities: ['Adaptive suspension', 'Premium audio', 'Heated leather seats', 'Panoramic sunroof', 'Climate control'],
-  },
-  {
-    name: 'BMW 7 Series',
-    image: '/vehicles/bmw-7-series.png',
-    capacity: '5 passengers',
-    features: ['Innovation', 'Luxury Sedan', 'Smart Technology', 'Refined Comfort', 'Executive Class'],
-    description: 'German engineering meets luxury comfort.',
-    fullDescription: 'The BMW 7 Series combines innovative technology with sophisticated luxury for an unparalleled driving experience.',
-    yearModel: '2023',
-    exteriorColor: 'Alpine White',
-    interiorColor: 'Fine-Grain Leather',
-    amenities: ['iDrive system', 'Premium audio', 'Heated massage seats', 'Ambient lighting', 'WiFi connectivity'],
-  },
-  {
-    name: 'Audi A8',
-    image: '/vehicles/audi-a8.png',
-    capacity: '5 passengers',
-    features: ['Executive Comfort', 'Advanced Technology', 'Luxurious Interior', 'Smooth Ride', 'Premium Craftsmanship'],
-    description: 'Executive luxury with technological sophistication.',
-    fullDescription: 'The Audi A8 delivers executive-level comfort with advanced technology and meticulously crafted interiors.',
-    yearModel: '2023',
-    exteriorColor: 'Glacier White',
-    interiorColor: 'Premium Napa Leather',
-    amenities: ['Virtual cockpit', 'Bang & Olufsen audio', 'Heated seats', 'Air quality system', 'Panoramic roof'],
   },
 ];
 
@@ -245,9 +207,9 @@ export default function FleetPage() {
                 }`}
                 onClick={() => handleVehicleClick(vehicle)}
               >
-                <div className="card overflow-hidden h-full hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                <div className="card overflow-hidden h-full flex flex-col hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                   {/* Vehicle Image */}
-                  <div className="relative aspect-video overflow-hidden bg-muted">
+                  <div className="relative aspect-video overflow-hidden bg-muted flex-shrink-0">
                     <Image
                       src={vehicle.image}
                       alt={vehicle.name}
@@ -260,19 +222,24 @@ export default function FleetPage() {
                   </div>
 
                   {/* Content */}
-                  <div className="p-6">
+                  <div className="p-6 flex-grow flex flex-col">
                     <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors">
                       {vehicle.name}
                     </h3>
                     <p className="text-sm text-foreground-secondary mb-4">
                       {vehicle.capacity}
                     </p>
-                    <p className="body-text-light mb-6">
-                      {vehicle.description}
-                    </p>
+                    
+                    {/* Description with fade effect */}
+                    <div className="relative mb-6 flex-grow min-h-[60px]">
+                      <p className="body-text-light line-clamp-3">
+                        {vehicle.description}
+                      </p>
+                      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+                    </div>
 
                     {/* Features Preview */}
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <div className="flex flex-wrap gap-2 mb-6 mt-auto">
                       {vehicle.features.slice(0, 2).map((feature, idx) => (
                         <span
                           key={idx}
@@ -289,7 +256,7 @@ export default function FleetPage() {
                     </div>
 
                     {/* View Details Button */}
-                    <button className="w-full px-4 py-2 bg-gradient-to-r from-primary to-primary-dark text-primary-foreground font-semibold rounded-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+                    <button className="w-full px-4 py-2 bg-gradient-to-r from-primary to-primary-dark text-primary-foreground font-semibold rounded-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group/btn mt-auto">
                       View Details
                       <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </button>
