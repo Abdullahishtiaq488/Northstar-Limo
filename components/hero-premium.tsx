@@ -71,7 +71,6 @@ const SLIDE_DURATION = 6000;
 export function HeroPremium() {
   const [current, setCurrent] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [loaded, setLoaded] = useState<boolean[]>(() => slides.map(() => false));
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const goTo = useCallback((index: number) => {
@@ -92,38 +91,10 @@ export function HeroPremium() {
     };
   }, [isPlaying, current]);
 
-  const handleLoad = (index: number) => {
-    setLoaded((prevLoaded) => {
-      if (prevLoaded[index]) return prevLoaded;
-      const copy = [...prevLoaded];
-      copy[index] = true;
-      return copy;
-    });
-  };
-
   const active = slides[current];
-  const isActiveLoaded = loaded[current];
 
   return (
     <section className="relative w-full min-h-screen overflow-hidden flex items-center">
-      {/* Skeleton — visible until the active slide image has loaded */}
-      {!isActiveLoaded && (
-        <div className="absolute inset-0 z-20 skeleton-shimmer" aria-hidden="true">
-          <div className="container-max w-full h-full flex items-center">
-            <div className="max-w-2xl pt-28 pb-16 w-full space-y-6">
-              <div className="h-9 w-64 rounded-full bg-foreground/10" />
-              <div className="h-14 w-3/4 rounded-lg bg-foreground/10" />
-              <div className="h-14 w-2/3 rounded-lg bg-foreground/10" />
-              <div className="h-20 w-full max-w-xl rounded-lg bg-foreground/10" />
-              <div className="flex gap-4 pt-2">
-                <div className="h-14 w-48 rounded-lg bg-foreground/10" />
-                <div className="h-14 w-44 rounded-lg bg-foreground/10" />
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Slides */}
       <div className="absolute inset-0 z-0" style={{ minHeight: '100vh' }}>
         {slides.map((slide, i) => (
@@ -143,8 +114,6 @@ export function HeroPremium() {
               className={`object-cover transition-transform duration-[8000ms] ease-out ${
                 i === current ? 'scale-105' : 'scale-100'
               }`}
-              onLoad={() => handleLoad(i)}
-              onError={() => handleLoad(i)}
             />
           </div>
         ))}

@@ -9,15 +9,30 @@ export function FooterProfessional() {
   const footerSections = [
     {
       title: 'Company',
-      links: ['About Us', 'Our Fleet', 'Leadership', 'Careers', 'Press'],
+      links: [
+        { label: 'About Us', href: '/about' },
+        { label: 'Our Fleet', href: '/fleet' },
+        { label: 'Services', href: '/services' },
+        { label: 'Careers', href: '#' },
+      ],
     },
     {
       title: 'Services',
-      links: ['Airport Transfer', 'Corporate Travel', 'Events & Weddings', 'Private Tours', 'Concierge'],
+      links: [
+        { label: 'Airport Transfer', href: '/services' },
+        { label: 'Corporate Travel', href: '/services' },
+        { label: 'Events & Weddings', href: '/services' },
+        { label: 'Special Occasions', href: '/services' },
+      ],
     },
     {
       title: 'Support',
-      links: ['Booking Help', 'FAQ', 'Contact Us', 'Privacy Policy', 'Terms of Service'],
+      links: [
+        { label: 'Contact Us', href: '/contact' },
+        { label: 'FAQ', href: '#' },
+        { label: 'Privacy Policy', href: '#' },
+        { label: 'Terms of Service', href: '#' },
+      ],
     },
   ];
 
@@ -106,12 +121,12 @@ export function FooterProfessional() {
               <h4 className="font-bold text-foreground mb-6 text-lg">{section.title}</h4>
               <ul className="space-y-3">
                 {section.links.map((link) => (
-                  <li key={link}>
+                  <li key={link.label}>
                     <Link
-                      href="#"
+                      href={link.href}
                       className="text-foreground-secondary hover:text-primary transition-colors duration-300 text-sm font-medium"
                     >
-                      {link}
+                      {link.label}
                     </Link>
                   </li>
                 ))}

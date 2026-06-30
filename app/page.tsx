@@ -1,7 +1,7 @@
 import { HeaderProfessional } from '@/components/header-professional'
 import { HeroPremium } from '@/components/hero-premium'
-import { ServicesPremium } from '@/components/services-premium'
-import { FleetPremium } from '@/components/fleet-premium'
+import { ServicesLimited } from '@/components/services-limited'
+import { FleetLimited } from '@/components/fleet-limited'
 import { BookingSectionPremium } from '@/components/booking-section-premium'
 import { TestimonialsPremium } from '@/components/testimonials-premium'
 import { FooterProfessional } from '@/components/footer-professional'
@@ -12,8 +12,8 @@ export default function Page() {
       <HeaderProfessional />
       <main>
         <HeroPremium />
-        <ServicesPremium />
-        <FleetPremium />
+        <ServicesLimited />
+        <FleetLimited />
         <BookingSectionPremium />
         <TestimonialsPremium />
       </main>
