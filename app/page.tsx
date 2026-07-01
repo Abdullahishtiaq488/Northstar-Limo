@@ -6,11 +6,15 @@ import { BookingSectionPremium } from '@/components/booking-section-premium'
 import { TestimonialsPremium } from '@/components/testimonials-premium'
 import { FooterProfessional } from '@/components/footer-professional'
 
+export const metadata = {
+  title: 'North Star Limo | Premier Ground Transportation',
+}
+
 export default function Page() {
   return (
     <>
       <HeaderProfessional />
-      <main>
+      <main id="main-content" role="main">
         <HeroPremium />
         <ServicesLimited />
         <FleetLimited />
