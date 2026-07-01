@@ -1,6 +1,6 @@
 'use client';
 
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { HeaderProfessional } from '@/components/header-professional';
 import { FooterProfessional } from '@/components/footer-professional';
@@ -12,24 +12,28 @@ const contactInfo = [
     title: 'Phone',
     details: '(475) 341-8410',
     description: 'Available 24/7 for booking and inquiries',
+    href: 'tel:+14753418410',
   },
   {
     icon: Mail,
     title: 'Email',
-    details: 'info@northstarlimo.com',
+    details: 'mynorthstarlimo@gmail.com',
     description: 'We respond within 2 hours',
+    href: 'mailto:mynorthstarlimo@gmail.com',
   },
   {
     icon: MapPin,
     title: 'Address',
-    details: 'New Haven, Connecticut',
-    description: 'Serving Connecticut and New York',
+    details: 'Waterbury, CT',
+    description: '245 Colonial Ave, Unit 1A, 06704',
+    href: '#',
   },
   {
     icon: Clock,
     title: 'Hours',
     details: '24/7 Service',
     description: 'Always available for your needs',
+    href: '#',
   },
 ];
 
@@ -70,135 +74,207 @@ export default function ContactPage() {
           description="Have questions or ready to book your next ride? Our team is here to help. Contact us today and experience premium transportation."
         />
 
-        {/* Contact Info Cards */}
-        <section className="section-pad-xl bg-background relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="mb-12">
-              <div className="flex items-center justify-center mb-6">
-                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-                  <div className="w-2 h-2 rounded-full bg-primary" />
-                  <span className="text-sm font-semibold text-primary tracking-wider uppercase">
-                    Contact Information
-                  </span>
-                  <div className="w-2 h-2 rounded-full bg-primary" />
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        {/* Contact Info Cards - Clean, no blur */}
+        <section className="section-pad-xl bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {contactInfo.map((info, idx) => {
                 const Icon = info.icon;
                 return (
-                  <div key={idx} className="group relative h-full">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-accent/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur" />
-                    <div className="relative bg-background-secondary border border-border rounded-2xl p-6 hover:border-primary/40 transition-all duration-300 h-full flex flex-col">
-                      <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gradient-to-br from-primary/20 to-accent/10 mb-4 group-hover:from-primary/30 group-hover:to-accent/20 transition-all duration-300">
-                        <Icon className="w-7 h-7 text-primary" />
+                  <a
+                    key={idx}
+                    href={info.href}
+                    className="group block bg-background-secondary border border-border rounded-2xl p-6 hover:border-primary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 dark:bg-background-secondary/50"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                        <Icon className="w-6 h-6" />
                       </div>
-                      <h3 className="font-semibold text-sm text-foreground mb-2 group-hover:text-primary transition-colors">{info.title}</h3>
-                      <p className="text-xs font-semibold text-primary mb-2">{info.details}</p>
-                      <p className="text-xs text-foreground-secondary flex-grow">{info.description}</p>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-sm text-foreground mb-1 group-hover:text-primary transition-colors">
+                          {info.title}
+                        </h3>
+                        <p className="text-sm font-medium text-primary break-words">{info.details}</p>
+                        <p className="text-xs text-foreground-secondary mt-1">{info.description}</p>
+                      </div>
                     </div>
-                  </div>
+                  </a>
                 );
               })}
             </div>
           </div>
         </section>
 
-        {/* Form Section */}
-        <section className="section-pad-xl bg-background-secondary relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-primary/8 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+        {/* Form + Map Section - Two column layout */}
+        <section className="section-pad-xl bg-background-secondary">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Form - takes 2/3 */}
+              <div className="lg:col-span-2">
+                <div className="bg-background border border-border rounded-3xl p-8 sm:p-10 shadow-sm dark:bg-background/80">
+                  <div className="mb-8">
+                    <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-2">
+                      Send us a Message
+                    </h2>
+                    <p className="text-foreground-secondary">
+                      Tell us about your transportation needs and we'll get back to you promptly.
+                    </p>
+                  </div>
 
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="bg-background border border-border rounded-3xl p-8 sm:p-12">
-              <h2 className="heading-luxury text-center mb-2">Send us a Message</h2>
-              <p className="text-center text-foreground-secondary mb-10">
-                Tell us about your transportation needs and we'll get back to you promptly.
-              </p>
+                  {submitted ? (
+                    <div className="bg-success/10 border border-success/30 rounded-2xl p-8 text-center">
+                      <CheckCircle className="w-16 h-16 text-success mx-auto mb-4" />
+                      <h3 className="text-xl font-bold text-foreground mb-2">Thank You!</h3>
+                      <p className="text-foreground-secondary">
+                        We've received your message and will be in touch within 2 hours.
+                      </p>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                          <label className="block text-xs font-semibold text-foreground-secondary mb-1.5">
+                            Full Name <span className="text-primary">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            name="name"
+                            placeholder="John Doe"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 bg-background-secondary border border-border rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none dark:bg-background/50"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-semibold text-foreground-secondary mb-1.5">
+                            Email Address <span className="text-primary">*</span>
+                          </label>
+                          <input
+                            type="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 bg-background-secondary border border-border rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none dark:bg-background/50"
+                          />
+                        </div>
+                      </div>
 
-              {submitted ? (
-                <div className="bg-gradient-to-r from-success/10 to-success/5 border border-success/30 rounded-2xl p-8 text-center">
-                  <CheckCircle className="w-16 h-16 text-success mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-foreground mb-2">Thank You!</h3>
-                  <p className="text-foreground-secondary">
-                    We've received your message and will be in touch within 2 hours.
-                  </p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                          <label className="block text-xs font-semibold text-foreground-secondary mb-1.5">
+                            Phone Number
+                          </label>
+                          <input
+                            type="tel"
+                            name="phone"
+                            placeholder="(123) 456-7890"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            className="w-full px-4 py-3 bg-background-secondary border border-border rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none dark:bg-background/50"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-semibold text-foreground-secondary mb-1.5">
+                            Service Type
+                          </label>
+                          <select
+                            name="serviceType"
+                            value={formData.serviceType}
+                            onChange={handleChange}
+                            className="w-full px-4 py-3 bg-background-secondary border border-border rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none appearance-none dark:bg-background/50"
+                          >
+                            <option value="general">General Inquiry</option>
+                            <option value="airport">Airport Transfer</option>
+                            <option value="corporate">Corporate Travel</option>
+                            <option value="event">Event Transportation</option>
+                            <option value="wedding">Wedding Services</option>
+                            <option value="other">Other</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-foreground-secondary mb-1.5">
+                          Preferred Date
+                        </label>
+                        <input
+                          type="date"
+                          name="date"
+                          value={formData.date}
+                          onChange={handleChange}
+                          className="w-full px-4 py-3 bg-background-secondary border border-border rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none dark:bg-background/50"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-foreground-secondary mb-1.5">
+                          Message <span className="text-primary">*</span>
+                        </label>
+                        <textarea
+                          name="message"
+                          placeholder="Tell us about your transportation needs..."
+                          value={formData.message}
+                          onChange={handleChange}
+                          rows={5}
+                          required
+                          className="w-full px-4 py-3 bg-background-secondary border border-border rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none resize-none dark:bg-background/50"
+                        />
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="w-full sm:w-auto px-8 py-3.5 bg-primary hover:bg-primary-dark text-primary-foreground font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5"
+                      >
+                        Send Message
+                        <Send className="w-4 h-4" />
+                      </button>
+                    </form>
+                  )}
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Your Name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
-                    />
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Your Email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
-                    />
+              </div>
+
+              {/* Sidebar - Map / Location */}
+              <div className="lg:col-span-1">
+                <div className="bg-background border border-border rounded-3xl p-6 shadow-sm h-full flex flex-col dark:bg-background/80">
+                  <h3 className="font-bold text-foreground text-lg mb-4 flex items-center gap-2">
+                    <MapPin className="w-5 h-5 text-primary" />
+                    Find Us
+                  </h3>
+                  <div className="flex-1 bg-background-secondary rounded-xl overflow-hidden min-h-[220px] relative border border-border dark:bg-background/50">
+                    {/* Replace with actual map embed */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-foreground-secondary p-4 text-center">
+                      <MapPin className="w-10 h-10 text-primary/40 mb-2" />
+                      <p className="text-sm font-medium">245 Colonial Ave, Unit 1A</p>
+                      <p className="text-sm">Waterbury, CT 06704</p>
+                      <a
+                        href="https://maps.google.com/maps?q=245+Colonial+Ave,+Waterbury,+CT+06704"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 text-xs text-primary hover:underline font-medium inline-flex items-center gap-1"
+                      >
+                        Open in Google Maps <ArrowRight className="w-3 h-3" />
+                      </a>
+                    </div>
                   </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Phone Number"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
-                    />
-                    <select
-                      name="serviceType"
-                      value={formData.serviceType}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
-                    >
-                      <option value="general">Select Service Type</option>
-                      <option value="airport">Airport Transfer</option>
-                      <option value="corporate">Corporate Travel</option>
-                      <option value="event">Event Transportation</option>
-                      <option value="wedding">Wedding Services</option>
-                      <option value="other">Other</option>
-                    </select>
+                  <div className="mt-4 space-y-1.5 text-xs text-foreground-secondary">
+                    <p className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                      Free parking available
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                      Wheelchair accessible
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                      Professional chauffeurs
+                    </p>
                   </div>
-
-                  <input
-                    type="date"
-                    name="date"
-                    value={formData.date}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
-                  />
-
-                  <textarea
-                    name="message"
-                    placeholder="Tell us about your transportation needs..."
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={5}
-                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all resize-none"
-                  />
-
-                  <button type="submit" className="btn-primary w-full sm:w-auto">
-                    Send Message
-                    <Send className="w-5 h-5" />
-                  </button>
-                </form>
-              )}
+                </div>
+              </div>
             </div>
           </div>
         </section>

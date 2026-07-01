@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { HeaderProfessional } from '@/components/header-professional';
 import { FooterProfessional } from '@/components/footer-professional';
 import { PageHeader } from '@/components/page-header';
@@ -71,13 +72,13 @@ export default function BlogPage() {
                 >
                   {/* Featured Image */}
                   <div className="relative aspect-video overflow-hidden bg-muted">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="w-full h-full bg-gradient-to-br from-primary/30 to-accent/20 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-5xl font-serif text-primary/40 mb-2">📰</div>
-                        <p className="text-sm text-foreground-secondary">{post.category}</p>
-                      </div>
-                    </div>
                   </div>
 
                   {/* Content */}

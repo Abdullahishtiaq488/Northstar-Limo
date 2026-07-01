@@ -80,7 +80,6 @@ export function HeroPremium() {
   const next = useCallback(() => goTo(current + 1), [current, goTo]);
   const prev = useCallback(() => goTo(current - 1), [current, goTo]);
 
-  // Auto-advance
   useEffect(() => {
     if (!isPlaying) return;
     timerRef.current = setInterval(() => {
@@ -117,7 +116,6 @@ export function HeroPremium() {
             />
           </div>
         ))}
-        {/* Adaptive scrims for legibility in both themes */}
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/20 dark:from-background/95 dark:via-background/75 dark:to-background/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
       </div>
@@ -129,12 +127,11 @@ export function HeroPremium() {
         <Star className="absolute top-[24%] right-[8%] w-2.5 h-2.5 text-primary/60 fill-primary/40" />
       </div>
 
-      {/* Content - Fixed height to prevent layout shift */}
-      <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-20 flex items-start min-h-[calc(100vh-140px)]">
-        {/* key forces re-mount per slide so the rise animation replays */}
+      {/* Content - Fixed height, more room, responsive padding */}
+      <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-[calc(100vh-80px)] flex items-start pt-20 sm:pt-28 pb-12 sm:pb-20">
         <div key={current} className="max-w-2xl w-full">
           {/* Eyebrow badge */}
-          <div className="animate-rise inline-flex items-center gap-2 mb-6 pl-1.5 pr-3.5 py-1 rounded-full bg-surface/70 border border-primary/25 backdrop-blur-md shadow-sm">
+          <div className="animate-rise inline-flex items-center gap-2 mb-4 sm:mb-6 pl-1.5 pr-3.5 py-1 rounded-full bg-surface/70 border border-primary/25 backdrop-blur-md shadow-sm">
             <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary">
               <Star className="w-3 h-3 text-primary-foreground fill-primary-foreground" />
             </span>
@@ -143,38 +140,38 @@ export function HeroPremium() {
             </span>
           </div>
 
-          <h1 className="font-serif font-bold mb-5 leading-[1.06] text-foreground text-4xl sm:text-5xl lg:text-6xl min-h-[2.1em]">
+          <h1 className="font-serif font-bold mb-3 sm:mb-5 leading-[1.06] text-foreground text-4xl sm:text-5xl lg:text-6xl">
             <span className="animate-rise rise-delay-1 inline-block">{active.title}</span>
             <span className="animate-rise rise-delay-2 block text-primary">
               {active.highlight}
             </span>
           </h1>
 
-          <p className="animate-rise rise-delay-3 body-text max-w-xl mb-8 min-h-[4.5em] sm:min-h-[3.5em]">
+          <p className="animate-rise rise-delay-3 body-text max-w-xl mb-5 sm:mb-8">
             {active.description}
           </p>
 
           {/* CTAs */}
-          <div className="animate-rise rise-delay-4 flex flex-col sm:flex-row gap-4 mb-10">
-            <Link href="#book" className="btn-primary">
+          <div className="animate-rise rise-delay-4 flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-10">
+            <Link href="#book" className="btn-primary text-sm sm:text-base px-6 sm:px-8 py-2.5 sm:py-3">
               Book Your Ride
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </Link>
-            <Link href="#fleet" className="btn-secondary">
+            <Link href="#fleet" className="btn-secondary text-sm sm:text-base px-6 sm:px-8 py-2.5 sm:py-3">
               Explore the Fleet
             </Link>
           </div>
 
           {/* Trust badges */}
-          <div className="flex flex-wrap gap-2.5 mb-10">
+          <div className="flex flex-wrap gap-2 sm:gap-2.5 mb-6 sm:mb-10">
             {trustBadges.map((item) => {
               const Icon = item.icon;
               return (
                 <div
                   key={item.text}
-                  className="inline-flex items-center gap-2 rounded-full bg-surface/60 border border-border px-3.5 py-1.5 backdrop-blur-sm"
+                  className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-surface/60 border border-border px-2.5 sm:px-3.5 py-1 sm:py-1.5 backdrop-blur-sm"
                 >
-                  <Icon className="w-4 h-4 text-primary" />
+                  <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
                   <span className="text-xs sm:text-sm font-medium text-foreground-secondary">
                     {item.text}
                   </span>
@@ -184,16 +181,7 @@ export function HeroPremium() {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 max-w-lg">
-            {stats.map((stat) => (
-              <div key={stat.label} className="border-l-2 border-primary/40 pl-4">
-                <p className="text-2xl sm:text-3xl font-serif font-bold text-foreground">
-                  {stat.value}
-                </p>
-                <p className="text-xs sm:text-sm text-foreground-tertiary">{stat.label}</p>
-              </div>
-            ))}
-          </div>
+          
         </div>
       </div>
 

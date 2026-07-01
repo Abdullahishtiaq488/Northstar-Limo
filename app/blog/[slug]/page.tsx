@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { HeaderProfessional } from '@/components/header-professional';
 import { FooterProfessional } from '@/components/footer-professional';
 import { blogPosts, getBlogPost } from '@/lib/blog-data';
@@ -79,22 +80,39 @@ export default async function BlogDetailPage({ params }: PageProps) {
           </div>
         </section>
 
+        {/* Featured Image */}
+        <section className="bg-background py-8">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-border">
+              <Image
+                src={post.image}
+                alt={post.title}
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
+        </section>
+
         {/* Article Content */}
         <section className="bg-background py-16">
           <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <style>{`
+              .dropcap {
+                float: left;
+                font-size: 2.5rem;
+                font-weight: bold;
+                line-height: 0.9;
+                padding-right: 0.5rem;
+                color: var(--color-primary);
+              }
+            `}</style>
             <div className="prose prose-invert max-w-none mb-12">
               <div
-                className="text-lg leading-relaxed text-foreground-secondary whitespace-pre-wrap"
+                className="text-lg leading-relaxed text-foreground-secondary space-y-4"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
-            </div>
-
-            {/* Featured Image Placeholder */}
-            <div className="my-12 rounded-xl overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 aspect-video flex items-center justify-center border border-border">
-              <div className="text-center">
-                <div className="text-6xl mb-4">📰</div>
-                <p className="text-foreground-secondary">Featured Article Image</p>
-              </div>
             </div>
           </article>
         </section>

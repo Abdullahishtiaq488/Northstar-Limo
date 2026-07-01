@@ -190,107 +190,101 @@ export default function FleetPage() {
           description="Explore our meticulously maintained fleet of luxury vehicles. Click on any vehicle to view detailed specifications and amenities."
         />
 
-      {/* Fleet Grid */}
-      <section className="section-pad-xl bg-background relative overflow-hidden">
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+        {/* Fleet Grid */}
+        <section className="section-pad-xl bg-background relative overflow-hidden">
+          {/* Removed blur background div */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {allFleetData.map((vehicle, index) => (
+                <div
+                  key={index}
+                  ref={(el) => {
+                    itemsRef.current[index] = el;
+                  }}
+                  className={`group cursor-pointer transition-all duration-700 ${
+                    visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                  }`}
+                  onClick={() => handleVehicleClick(vehicle)}
+                >
+                  <div className="card overflow-hidden h-full flex flex-col hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    {/* Vehicle Image */}
+                    <div className="relative aspect-video overflow-hidden bg-muted flex-shrink-0">
+                      <Image
+                        src={vehicle.image}
+                        alt={vehicle.name}
+                        fill
+                        quality={85}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {allFleetData.map((vehicle, index) => (
-              <div
-                key={index}
-                ref={(el) => {
-                  itemsRef.current[index] = el;
-                }}
-                className={`group cursor-pointer transition-all duration-700 ${
-                  visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
-                onClick={() => handleVehicleClick(vehicle)}
-              >
-                <div className="card overflow-hidden h-full flex flex-col hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                  {/* Vehicle Image */}
-                  <div className="relative aspect-video overflow-hidden bg-muted flex-shrink-0">
-                    <Image
-                      src={vehicle.image}
-                      alt={vehicle.name}
-                      fill
-                      quality={85}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6 flex-grow flex flex-col">
-                    <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors">
-                      {vehicle.name}
-                    </h3>
-                    <p className="text-sm text-foreground-secondary mb-4">
-                      {vehicle.capacity}
-                    </p>
-                    
-                    {/* Description with fade effect */}
-                    <div className="relative mb-6 flex-grow min-h-[60px]">
-                      <p className="body-text-light line-clamp-3">
-                        {vehicle.description}
+                    {/* Content */}
+                    <div className="p-6 flex-grow flex flex-col">
+                      <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors">
+                        {vehicle.name}
+                      </h3>
+                      <p className="text-sm text-foreground-secondary mb-4">
+                        {vehicle.capacity}
                       </p>
-                      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none" />
-                    </div>
 
-                    {/* Features Preview */}
-                    <div className="flex flex-wrap gap-2 mb-6 mt-auto">
-                      {vehicle.features.slice(0, 2).map((feature, idx) => (
-                        <span
-                          key={idx}
-                          className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium"
-                        >
-                          {feature}
-                        </span>
-                      ))}
-                      {vehicle.features.length > 2 && (
-                        <span className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">
-                          +{vehicle.features.length - 2}
-                        </span>
-                      )}
-                    </div>
+                      {/* Description – gradient fade removed */}
+                      <div className="mb-6 flex-grow">
+                        <p className="body-text-light line-clamp-3">
+                          {vehicle.description}
+                        </p>
+                      </div>
 
-                    {/* View Details Button */}
-                    <button className="w-full px-4 py-2 bg-gradient-to-r from-primary to-primary-dark text-primary-foreground font-semibold rounded-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group/btn mt-auto">
-                      View Details
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </button>
+                      {/* Features Preview */}
+                      <div className="flex flex-wrap gap-2 mb-6 mt-auto">
+                        {vehicle.features.slice(0, 2).map((feature, idx) => (
+                          <span
+                            key={idx}
+                            className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium"
+                          >
+                            {feature}
+                          </span>
+                        ))}
+                        {vehicle.features.length > 2 && (
+                          <span className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">
+                            +{vehicle.features.length - 2}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* View Details Button */}
+                      <button className="w-full px-4 py-2 bg-gradient-to-r from-primary to-primary-dark text-primary-foreground font-semibold rounded-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group/btn mt-auto">
+                        View Details
+                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section className="section-pad-xl bg-background-secondary relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h2 className="heading-luxury mb-6">Ready to Book Your Luxury Ride?</h2>
-          <p className="body-text max-w-2xl mx-auto mb-8">
-            Select the perfect vehicle from our premium fleet and experience luxury transportation at its finest.
-          </p>
-          <button
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            className="btn-primary"
-          >
-            Browse Fleet Above
-            <ArrowRight className="w-5 h-5" />
-          </button>
-        </div>
-      </section>
+        {/* CTA Section */}
+        <section className="section-pad-xl bg-background-secondary relative overflow-hidden">
+          {/* Removed blur background container */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h2 className="heading-luxury mb-6">Ready to Book Your Luxury Ride?</h2>
+            <p className="body-text max-w-2xl mx-auto mb-8">
+              Select the perfect vehicle from our premium fleet and experience luxury transportation at its finest.
+            </p>
+            <button
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="btn-primary"
+            >
+              Browse Fleet Above
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </div>
+        </section>
 
         {/* Fleet Modal */}
         <FleetModal
