@@ -18,23 +18,31 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'North Star Limo | Premier Ground Transportation',
-  description: 'Experience luxury ground transportation with North Star Limo. Premium airport transfers, corporate travel, and event services across Connecticut and New York.',
-  keywords: 'limo service, luxury transportation, airport transfers, corporate transportation, event services',
+  title: 'North Star Limo | Premier Ground Transportation in CT & NY',
+  description: 'Luxury ground transportation services. Premium airport transfers, corporate travel, weddings & event services across Connecticut and New York. 24/7 availability.',
+  keywords: 'limo service, luxury transportation, airport transfers, corporate transportation, event services, Connecticut, New York, limousine',
   creator: 'North Star Limo',
+  metadataBase: new URL('https://northstarlimo.com'),
+  alternates: {
+    canonical: 'https://northstarlimo.com',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://northstarlimo.com',
     siteName: 'North Star Limo',
     title: 'North Star Limo | Premier Ground Transportation',
-    description: 'Luxury ground transportation services',
+    description: 'Luxury ground transportation services with 15+ years of experience',
     images: [
       {
         url: 'https://northstarlimo.com/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'North Star Limo',
+        alt: 'North Star Limo - Premium Transportation',
       },
     ],
   },
