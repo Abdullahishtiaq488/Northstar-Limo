@@ -94,7 +94,7 @@ export function HeroPremium() {
   const active = slides[current];
 
   return (
-    <section className="relative w-full overflow-hidden flex items-center" style={{ height: '100dvh', maxHeight: '100lvh' }}>
+    <section className="relative w-full min-h-screen overflow-hidden flex items-center pt-20">
       {/* Slides */}
       <div className="absolute inset-0 z-0">
         {slides.map((slide, i) => (
@@ -130,7 +130,7 @@ export function HeroPremium() {
       </div>
 
       {/* Content */}
-      <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-20 flex items-center" style={{ height: '100dvh' }}>
+      <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20 flex items-center justify-start">
         {/* key forces re-mount per slide so the rise animation replays */}
         <div key={current} className="max-w-2xl w-full">
           {/* Eyebrow badge */}
