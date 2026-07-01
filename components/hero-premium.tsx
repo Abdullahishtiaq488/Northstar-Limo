@@ -94,9 +94,9 @@ export function HeroPremium() {
   const active = slides[current];
 
   return (
-    <section className="relative w-full overflow-hidden flex items-center" style={{ height: '100dvh' }}>
+    <section className="relative w-full min-h-screen overflow-hidden flex items-center">
       {/* Slides */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0" style={{ minHeight: '100vh' }}>
         {slides.map((slide, i) => (
           <div
             key={slide.image}
@@ -130,12 +130,12 @@ export function HeroPremium() {
       </div>
 
       {/* Content */}
-      <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-20 flex items-center" style={{ height: '100dvh' }}>
+      <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-20">
         {/* key forces re-mount per slide so the rise animation replays */}
-        <div key={current} className="max-w-2xl w-full">
+        <div key={current} className="max-w-2xl">
           {/* Eyebrow badge */}
-          <div className="animate-rise inline-flex items-center gap-2 mb-6 pl-1.5 pr-3.5 py-1 rounded-full bg-surface/70 border border-primary/25 backdrop-blur-md shadow-sm" role="status" aria-live="polite">
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary" aria-hidden="true">
+          <div className="animate-rise inline-flex items-center gap-2 mb-6 pl-1.5 pr-3.5 py-1 rounded-full bg-surface/70 border border-primary/25 backdrop-blur-md shadow-sm">
+            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary">
               <Star className="w-3 h-3 text-primary-foreground fill-primary-foreground" />
             </span>
             <span className="text-[0.7rem] font-semibold tracking-[0.16em] uppercase text-foreground-secondary">
@@ -143,14 +143,14 @@ export function HeroPremium() {
             </span>
           </div>
 
-          <h1 className="font-serif font-bold mb-5 leading-[1.06] text-foreground text-4xl sm:text-5xl lg:text-6xl min-h-[3em]">
+          <h1 className="font-serif font-bold mb-5 leading-[1.06] text-foreground text-4xl sm:text-5xl lg:text-6xl min-h-[2.1em]">
             <span className="animate-rise rise-delay-1 inline-block">{active.title}</span>
             <span className="animate-rise rise-delay-2 block text-primary">
               {active.highlight}
             </span>
           </h1>
 
-          <p className="animate-rise rise-delay-3 body-text max-w-xl mb-8 min-h-[5em]">
+          <p className="animate-rise rise-delay-3 body-text max-w-xl mb-8 min-h-[4.5em] sm:min-h-[3.5em]">
             {active.description}
           </p>
 

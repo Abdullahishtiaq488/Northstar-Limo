@@ -44,25 +44,18 @@ export function HeaderProfessional() {
 
   // The hero's top gradient tints toward the theme background, so themed
   // text stays legible whether or not the header is scrolled.
-  const linkColor = 'text-foreground-secondary hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded';
-  const iconColor = 'text-foreground-secondary hover:text-primary hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary';
+  const linkColor = 'text-foreground-secondary hover:text-primary';
+  const iconColor = 'text-foreground-secondary hover:text-primary hover:bg-muted';
 
   return (
-    <>
-      <a 
-        href="#main-content" 
-        className="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-primary focus:text-primary-foreground focus:rounded focus:font-semibold"
-      >
-        Skip to main content
-      </a>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? 'bg-background/85 backdrop-blur-xl shadow-lg border-b border-border'
-            : 'bg-transparent border-b border-transparent'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? 'bg-background/85 backdrop-blur-xl shadow-lg border-b border-border'
+          : 'bg-transparent border-b border-transparent'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
@@ -80,12 +73,12 @@ export function HeaderProfessional() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-2" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-4 py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 ${linkColor}`}
+                className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${linkColor}`}
               >
                 {item.label}
               </Link>
@@ -155,6 +148,5 @@ export function HeaderProfessional() {
         )}
       </div>
     </header>
-    </>
   );
 }
