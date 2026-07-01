@@ -73,12 +73,12 @@ export function HeaderProfessional() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-0.5">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${linkColor}`}
+                className={`px-4 py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 ${linkColor}`}
               >
                 {item.label}
               </Link>
