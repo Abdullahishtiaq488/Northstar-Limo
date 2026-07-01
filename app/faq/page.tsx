@@ -8,7 +8,7 @@ import { PageHeader } from '@/components/page-header';
 
 const faqData = [
   {
-    category: 'General Information',
+    category: 'Genzeral Information',
     items: [
       {
         question: 'What types of services does North Star Limo offer?',

@@ -129,10 +129,10 @@ export function HeroPremium() {
         <Star className="absolute top-[24%] right-[8%] w-2.5 h-2.5 text-primary/60 fill-primary/40" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-20">
+      {/* Content - Fixed height to prevent layout shift */}
+      <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-20 flex items-start min-h-[calc(100vh-140px)]">
         {/* key forces re-mount per slide so the rise animation replays */}
-        <div key={current} className="max-w-2xl">
+        <div key={current} className="max-w-2xl w-full">
           {/* Eyebrow badge */}
           <div className="animate-rise inline-flex items-center gap-2 mb-6 pl-1.5 pr-3.5 py-1 rounded-full bg-surface/70 border border-primary/25 backdrop-blur-md shadow-sm">
             <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary">

@@ -78,7 +78,7 @@ export function HeaderProfessional() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${linkColor}`}
+                className={`px-4 py-2 text-md font-medium rounded-lg transition-all duration-300 ${linkColor}`}
               >
                 {item.label}
               </Link>
@@ -89,7 +89,7 @@ export function HeaderProfessional() {
           <div className="flex items-center gap-1.5 sm:gap-3">
             <a
               href="tel:+14753418410"
-              className={`hidden lg:flex items-center gap-2 text-sm font-medium transition-colors ${linkColor}`}
+              className={`hidden lg:flex items-center gap-2 text-md font-medium transition-colors ${linkColor}`}
             >
               <Phone className="w-4 h-4" />
               (475) 341-8410
