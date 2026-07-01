@@ -37,6 +37,7 @@ export function HeaderProfessional() {
     { label: 'About', href: '/about' },
     { label: 'Services', href: '/services' },
     { label: 'Fleet', href: '/fleet' },
+    { label: 'Blog', href: '/blog' },
     { label: 'Contact', href: '/contact' },
   ];
 
