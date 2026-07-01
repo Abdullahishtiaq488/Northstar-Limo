@@ -13,6 +13,7 @@ export function FooterProfessional() {
         { label: 'About Us', href: '/about' },
         { label: 'Our Fleet', href: '/fleet' },
         { label: 'Services', href: '/services' },
+        { label: 'Blog', href: '/blog' },
         { label: 'Careers', href: '#' },
       ],
     },
